@@ -9,6 +9,3 @@ The UI will be styled like the [Metal Gear Database](https://www.youtube.com/wat
 Encyclopedia of Characters, Vehicles, Weapons
 Planet Viewer (3d Planet Viewer)
 Relationship Map
-
-
-
