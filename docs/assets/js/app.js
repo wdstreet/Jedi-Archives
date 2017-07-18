@@ -1,1 +1,171 @@
-!function(){"use strict";function e(e,t){e.otherwise("/"),t.html5Mode({enabled:!0,requireBase:!0}),t.hashPrefix("!")}function t(){FastClick.attach(document.body)}function n(e,t,n,o,r){e.id=t.params.id||"",e.page=t.params.p||1;var a="http://swapi.co/api/"+o+"/"+e.id+"?page="+e.page,i={cache:!0};return window.location.hostname.match("aerobaticapp")&&(i={params:{url:a,cache:1,ttl:3e4}},a="/proxy"),1==e.page?""!=e.id?n.get(a,i).success(function(t){t.homeworld&&(t.homeworld=[t.homeworld]),e[r]=t;var o=t.name;"film"==r&&(o=t.title),window.location.hostname.match("aerobaticapp")&&(googleParams={params:{url:googleUrl,cache:1,ttl:3e5}},googleUrl="/proxy"),n.get(googleUrl,googleParams).then(function(t){e.imageUrl=t.data.items[0].pagemap.cse_image[0].src},function(t){e.imageUrl="Unknown"})}):n.get(a,i).success(function(t){e[o]=t,t.next&&(e.nextPage=2)}):(n.get(a,i).success(function(t){e[o]=t,t.next&&(e.nextPage=1*e.page+1)}),e.prevPage=1*e.page-1),e}angular.module("application",["ui.router","ngAnimate","foundation","foundation.dynamicRouting","foundation.dynamicRouting.animations"]).controller("FilmsCtrl",function(e,t,o){e=n(e,t,o,"films","film")}).controller("SpeciesCtrl",function(e,t,o){e=n(e,t,o,"species","specie")}).controller("PlanetsCtrl",function(e,t,o){e=n(e,t,o,"planets","planet")}).controller("PeopleCtrl",function(e,t,o){e=n(e,t,o,"people","person")}).controller("StarshipsCtrl",function(e,t,o){e=n(e,t,o,"starships","starship")}).controller("VehiclesCtrl",function(e,t,o){e=n(e,t,o,"vehicles","vehicle")}).directive("getProp",["$http","$filter",function(e,t){return{template:"{{property}}",scope:{prop:"=",url:"="},link:function(n,o,r){var a=n.url,i={cache:!0};window.location.hostname.match("aerobaticapp")&&(i={params:{url:a,cache:1,ttl:3e4}},a="/proxy");var c=t("capitalize");e.get(a,i).then(function(e){n.property=c(e.data[n.prop])},function(e){n.property="Unknown"})}}}]).filter("capitalize",function(){return function(e){return e?e.replace(/([^\W_]+[^\s-]*) */g,function(e){return e.charAt(0).toUpperCase()+e.substr(1)}):""}}).filter("lastdir",function(){return function(e){return e?e.split("/").slice(-2,-1)[0]:""}}).config(e).run(t),e.$inject=["$urlRouterProvider","$locationProvider"]}();
+(function() {
+  'use strict';
+
+  angular.module('application', [
+    'ui.router',
+    'ngAnimate',
+
+    //foundation
+    'foundation',
+    'foundation.dynamicRouting',
+    'foundation.dynamicRouting.animations'
+  ])
+  .controller('FilmsCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'films', 'film');
+  })
+  .controller('SpeciesCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'species', 'specie');
+  })
+  .controller('PlanetsCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'planets', 'planet');
+  })
+  .controller('PeopleCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'people', 'person');
+  })
+  .controller('StarshipsCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'starships', 'starship');
+  })
+  .controller('VehiclesCtrl', function($scope, $state, $http){
+    $scope = genericController($scope, $state, $http, 'vehicles', 'vehicle');
+  })
+  .directive("getProp", ['$http', '$filter', function($http, $filter) {
+    return {
+      template: "{{property}}",
+      scope: {
+        prop: "=",
+        url: "="
+      },
+      link: function(scope, element, attrs) {
+        // Use Aerobatic's caching if we're on that server
+        var urlApi = scope.url,
+          queryParams = {
+            cache: true
+          };
+
+        if (window.location.hostname.match('aerobaticapp')) {
+          queryParams = {
+            params: {
+              url: urlApi,
+              cache: 1,
+              ttl: 30000 // cache for 500 minutes
+            }
+          }
+          urlApi = '/proxy';
+        }
+
+        var capitalize = $filter('capitalize');
+        $http.get(urlApi, queryParams).then(function(result) {
+          scope.property = capitalize(result.data[scope.prop]);
+        }, function(err) {
+          scope.property = "Unknown";
+        });
+      }
+    }
+  }])
+  .filter('capitalize', function() {
+    return function (input) {
+      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1)}) : '';
+    }
+  })
+  .filter('lastdir', function () {
+    return function (input) {
+      return (!!input) ? input.split('/').slice(-2, -1)[0] : '';
+    }
+  })
+    .config(config)
+    .run(run)
+  ;
+
+  config.$inject = ['$urlRouterProvider', '$locationProvider'];
+
+  function config($urlProvider, $locationProvider) {
+    $urlProvider.otherwise('/');
+
+    $locationProvider.html5Mode({
+      enabled:true,
+      requireBase: true
+    });
+
+    $locationProvider.hashPrefix('!');
+  }
+
+  function run() {
+    FastClick.attach(document.body);
+  }
+
+  function genericController($scope, $state, $http, multiple, single){
+
+    
+    $scope.id = ($state.params.id || '');
+    $scope.page = ($state.params.p || 1);
+
+    // Use Aerobatic's caching if we're on that server
+    var urlApi = "http://swapi.co/api/"+multiple+"/"+$scope.id+"?page="+$scope.page,
+      queryParams = {
+        cache: true
+      };
+
+    if (window.location.hostname.match('aerobaticapp')) {
+      queryParams = {
+        params: {
+          url: urlApi,
+          cache: 1,
+          ttl: 30000 
+        }
+      }
+      urlApi = '/proxy';
+    }
+
+    if ($scope.page == 1) {
+      if ($scope.id != '') {
+        $http.get(urlApi, queryParams)
+          .success(function(data) {
+           
+            if (data.homeworld) data.homeworld = [data.homeworld];
+
+            $scope[single] = data;
+
+            var name = data.name;
+            if (single == 'film') name = data.title;
+   
+            if (window.location.hostname.match('aerobaticapp')) {
+              googleParams = {
+                params: {
+                  url: googleUrl,
+                  cache: 1,
+                  ttl: 300000 
+                }
+              }
+              googleUrl = '/proxy';
+            }
+
+            $http.get(googleUrl, googleParams)
+            .then(function(result) {
+              $scope.imageUrl = result.data.items[0].pagemap.cse_image[0].src;
+            }, function(err) {
+              $scope.imageUrl = "Unknown";
+            });
+          })
+
+      } else {
+        // We're on page 1, so thet next page is 2.
+        $http.get(urlApi, queryParams)
+        .success(function(data) {
+          $scope[multiple] = data;
+          if (data['next']) $scope.nextPage = 2;
+        });
+      }
+    } else {
+      
+      $http.get(urlApi, queryParams)
+      .success(function(data) {
+        $scope[multiple] = data;
+        if (data['next']) $scope.nextPage = 1*$scope.page + 1;
+      });
+      $scope.prevPage = 1*$scope.page - 1;
+    }
+    return $scope;
+
+  }
+
+})();
