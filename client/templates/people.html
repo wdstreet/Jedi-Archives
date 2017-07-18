@@ -1,0 +1,45 @@
+---
+name: people
+url: /people/:id?p=
+controller: PeopleCtrl
+---
+<div class="grid-content person" class="person" ng-show="person">
+	<h1 class='content-title'>{{person.name | capitalize}}</h1>
+	<img ng-show="imageUrl != 'Unknown'" src="{{imageUrl}}" alt="">
+	<hr>
+	<dl>
+	
+		<dt>Birth Year</dt>
+		<dd>{{person.birth_year | capitalize}}</dd>
+		<dt>Gender</dt>
+		<dd>{{person.gender | capitalize}}</dd>
+		<dt>Height</dt>
+		<dd>{{person.height}} cm</dd>
+		<dt>Weight</dt>
+		<dd>{{person.mass}} kg</dd>
+		<dt>Species</dt>
+		<dd class='link-content' ng-repeat="specie in person.species" ui-sref="species({ id:(specie | lastdir), p:''})">
+			<span get-prop prop="'name'" url="specie">{{specie}}</span>
+		</dd>
+		<dt>Films</dt>
+		<dd class='link-content' ng-repeat="film in person.films" ui-sref="films({ id:(film | lastdir), p:''})">
+			<span get-prop prop="'title'" url="film">{{film}}</span>
+		</dd>
+
+	</dl>
+</div>
+
+
+<div class="grid-content people" class="people" ng-show="people">
+	<a class="page-button button pagination" ng-show="prevPage" ui-sref="people({ p: prevPage })">Back to Page {{prevPage}}</a>
+
+	<div class="grid-content">
+		<ul class="">
+			<li  ui-sref="people({ id:( person.url | lastdir ), p:'' })" class='tile' ng-repeat="person in people.results">
+		        <h1>{{person.name | capitalize}}</h1>
+		    </li>
+		</ul>
+	</div>
+
+	<a class="page-button button pagination" ng-show="nextPage" ui-sref="people({ p: nextPage })">Page {{nextPage}}</a>
+</div>

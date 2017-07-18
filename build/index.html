@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="application">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Jedi Archives</title>
+    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+    <script src="//use.typekit.net/nqg3nxr.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <script src="/assets/js/foundation.js"></script>
+    <script src="/assets/js/routes.js"></script>
+    <script src="/assets/js/app.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,800|Quicksand:400,700" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="grid-frame vertical">
+      <div class="grid-content shrink" style="padding: 0;">
+        <div class="menu-group">
+          <div class="menu-group-left">
+            <ul class="condense top-bar menu-bar">
+
+              <li class="show-all home-button" ui-sref-active="is-active"><a ui-sref="home"><strong>Jedi Archives</strong></a></li>
+
+            </ul>
+          </div>
+      
+        </div>
+      </div>
+      <base href="/"/>
+      <div ng-class="['ui-animation']" class="grid-frame vertical fadeIn easeInOut" ui-view ></div>
+    </div>
+  </body>
+</html>

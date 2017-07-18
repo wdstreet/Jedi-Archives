@@ -1,0 +1,41 @@
+---
+name: films
+url: /films/:id?p=
+controller: FilmsCtrl
+---
+<div class="grid-content film" class="film" ng-show="film" ng-init="crawl = 'false'">
+    <h1 class='content-sub'>Episode {{film.episode_id}}</h1>
+    <h1 class='content-title'>{{film.title}}</h1>
+
+    <dl>
+        <dt></dt>
+        <dd class='crawl' ng-class="{'crawl':crawl === true}" ng-click="crawl === true ? crawl = false : crawl = true">{{film.opening_crawl}}</dd>
+        <hr>
+        <dt>Director</dt>
+        <dd>{{film.director | capitalize}}</dd>
+        <dt>Producer</dt>
+        <dd>{{film.producer | capitalize}}</dd>
+        <dt>Characters</dt>
+        <dd class='link-content' ng-repeat="character in film.characters" ui-sref="people({ id:(character | lastdir), p:''})">
+            <span get-prop prop="'name'" url="character">{{character}}</span>
+        </dd>
+        <dt>Planets</dt>
+        <dd class='link-content' ng-repeat="planet in film.planets" ui-sref="planets({ id:(planet | lastdir), p:''})">
+            <span get-prop prop="'name'" url="planet">{{planet}}</span>
+        </dd>
+    
+    </dl>
+</div>
+
+
+<div class="grid-content films" class="films" ng-show="films">
+    <a class="button pagination" ng-show="prevPage" ui-sref="films({ p: prevPage })">Back to Page {{prevPage}}</a>
+
+    <div class="grid-content">
+        <ul class="home-list">
+            <li ui-sref="films({ id:( film.url | lastdir ), p:'' })" ng-repeat="film in films.results" class='tile'>
+                <h1>{{film.title | capitalize}}</h1>
+            </li>
+        </ul>
+    </div>
+</div>

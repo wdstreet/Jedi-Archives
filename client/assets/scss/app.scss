@@ -1,0 +1,455 @@
+@import "settings";
+@import "foundation";
+.home-list {
+    list-style: none;
+    font-size: 2em;
+}
+
+body { 
+    background-color: $dark-color;
+}
+.top-bar {
+    margin: 0 auto;
+    background-color: $primary-color;
+    width: 100vw;
+    height: 75px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow: hidden;
+    //    background-image: url('http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/10/Image-0-Header-2400x1200-882356343697.jpg');
+    background-position: center;
+    li {
+        width: 50%;
+        margin: 0 auto;
+    }
+    li a {
+        background-color: rgba(255, 255, 255, 0) !important;
+        color: #fff !important;
+        color: $warning-color !important;
+        font-size: 2em !important;
+    }
+}
+
+.page-button { 
+    width: 100vw;
+    left: 50%;
+    color: #fff;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+
+.wrap {
+    margin: 50px auto 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: space-around;
+    max-width: 1200px;
+}
+
+.tile {
+    width: 500px;
+    height: 380px;
+    margin: 10px;
+    background-color: #131821;
+    background-position: center;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    box-shadow: 0px 35px 77px -17px rgba(0, 0, 0, 0.44);
+    overflow: hidden;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    img {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.4s ease-out;
+        opacity: 0.5;
+    }
+    h1 {
+        font-weight: 700;
+        font-size: 2em;
+        margin: 5%;
+        color: #fff;
+    }
+    h2 {
+        font-weight: 100;
+        margin: 20px 0 0 0;
+        font-style: italic;
+        transform: translateX(200px);
+    }
+    p {
+        font-weight: 300;
+        color: #fff;
+        margin: 20px 0 0 0;
+        line-height: 25px;
+        opacity:0;
+        transform: translateX(-200px);
+        transition-delay: 0.1s;
+        transition: all 0.4s ease-out;
+    }
+}
+
+.tile-lite {
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    background-color: #131821;
+    background-position: center;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+    box-shadow: 0px 35px 77px -17px rgba(0, 0, 0, 0.44);
+    overflow: hidden;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    img {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.4s ease-out;
+        opacity: 0.5;
+    }
+    h1 {
+        font-weight: 700;
+        font-size: 1em;
+        margin: 5%;
+        color: #fff;
+    }
+    h2 {
+        font-weight: 100;
+        margin: 20px 0 0 0;
+        font-style: italic;
+        transform: translateX(200px);
+    }
+    p {
+        font-weight: 300;
+        color: #fff;
+        margin: 20px 0 0 0;
+        line-height: 25px;
+        opacity:0;
+        transform: translateX(-200px);
+        transition-delay: 0.1s;
+        transition: all 0.4s ease-out;
+    }
+}
+
+.tile .text {
+    z-index:99; 
+    position: absolute;
+    padding: 30px;
+    height: calc(100% - 60px);
+}
+
+.animate-text {
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+
+.tile:hover{
+    background-color:$warning-color;
+    box-shadow: 0px 35px 77px -17px rgba(0, 0, 0, 0.64);
+    transform: scale(1.05);
+    color: $primary-color !important;
+    img {
+        opacity: 0.5;
+    }
+    
+    .animate-text {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.crawl { 
+    width: 25%;
+    margin: 0 auto;
+    font-weight: 300;
+    margin-bottom: 3%;
+}
+
+
+.tile:hover p {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.content-title { 
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 4em;
+    color: $warning-color;
+    text-align: center;
+}
+
+.content-sub { 
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+    margin-top: 2%;
+    color: #fff;
+    text-align: center;
+}
+
+.link-content:hover { 
+    
+    span { 
+        transition: all 0.4s ease-out;
+        color: $warning-color;
+    }
+        
+}
+
+dl {
+        dt {
+            font-size: .9em;
+            font-weight: 300;
+        }
+        dd {
+            font-size: 1.5em;
+            font-weight: 800;
+        }
+}
+
+.person { 
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+
+}
+
+.film { 
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+
+}
+
+.person { 
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+
+}
+//.off-canvas ~ .grid-frame,
+//.off-canvas {
+//	background: $secondary-color;
+//}
+//
+//.menu-group {
+//	background: $primary-color;
+//	@include breakpoint(medium) {
+//		li.show-small {
+//			display: none;
+//		}
+//	}
+//	@include breakpoint(medium down) {
+//		li {
+//			display: none;
+//		}
+//		li.show-small,
+//		li.show-all {
+//			display: flex;
+//		}
+//	}
+//	.menu-bar > li > a.offcanvas-toggle {
+//		font-size: 34px;
+//		padding: 0 14px;
+//	}
+//}
+//
+//.off-canvas {
+//	overflow: auto;
+//	h2 {
+//		font-size: 2.125rem;
+//		line-height: 1;
+//		padding: 0 .7rem;
+//	}
+//	.menu-bar.vertical {
+//		margin: 0;
+//		&> li {
+//			&> a {
+//				font-size: 24px;
+//				padding: 17px 0;
+//				color: #222;
+//				&:hover {
+//					background: #000;
+//					color: #fff;
+//				}
+//			}
+//			&.is-active > a {
+//				color: #fff;
+//			}
+//		}
+//	}
+//}
+//
+//h1 {
+//	line-height: 1;
+//	padding: .2em 0;
+//	@media screen and (max-width: 500px) {
+//		font-size: 3.375rem;
+//	}
+//	@media screen and (max-width: 390px) {
+//		font-size: 2.5rem;
+//	}
+//	&+ img {
+//		border: 8px #000 solid;
+//	}
+//}
+//
+//
+//.menu-bar.condense {
+//	text-transform: uppercase;
+//	.is-active > a {
+//		font-weight: 900;
+//		background: #343434;
+//	}
+//}
+//
+//.menu-group {
+//	background: $primary-color;
+//	@include breakpoint(medium) {
+//		li.show-small {
+//			display: none;
+//		}
+//	}
+//	@include breakpoint(medium down) {
+//		li {
+//			display: none;
+//		}
+//		li.show-small,
+//		li.show-all {
+//			display: flex;
+//		}
+//	}
+//}
+//
+//.button.pagination {
+//	font-size: 30px;
+//	margin: 0;
+//	line-height: 1;
+//	font-weight: bold;
+//	width: 100%;
+//}
+//
+//.menu-bar.vertical {
+//	background: none;
+//	margin: 0 -1rem;
+//	&> li {
+//		&> a {
+//			font-weight: bold;
+//			font-size: 40px;
+//			text-align: center;
+//			display: block;
+//			padding: 27px 0;
+//			font-family: $header-font-family;
+//			transition: .2s all ease-out;
+//			-webkit-text-overflow: ellipsis;
+//			text-overflow: ellipsis;
+//			&:hover {
+//				background: #000;
+//				color: #fff;
+//			}
+//		}
+//	}
+//}
+//
+//hr {
+//	border: 1px dashed #000;
+//}
+//
+//dt, dd {
+//	display: block;
+//	float: left;
+//	margin-top: 0;
+//}
+//dt {
+//	clear: both;
+//	text-transform: uppercase;
+//	font-size: .8em;
+//	line-height: 2.2em;
+//	&::after {
+//		content: ":";
+//	}
+//}
+//dd {
+//	margin-left: 1.3em;
+//	&[href] {
+//		display: inline-block;
+//		position: relative;
+//		&::after {
+//			content: '';
+//			display: block;
+//			width: 100%;
+//			position: absolute;
+//			left: 0;
+//			bottom: 0;
+//			border-bottom: 1px dotted;
+//			transition: .2s all ease-out;
+//		}
+//		&:hover::after {
+//			border-bottom: 2px dashed;
+//		}
+//	}
+//}
+//
+//.home-list {
+//	margin: 0;
+//	list-style: none;
+//	li {
+//		float: left;
+//		width: 33%;
+//		clear: none;
+//		text-align: center;
+//		margin-bottom: .5%;
+//		margin-right: .5%;
+//		&:nth-child(3n) {
+//			margin-right: 0;
+//		}
+//		a {
+//			display: block;
+//			font-size: 24px;
+//			line-height: 10;
+//			text-transform: uppercase;
+//			font-weight: 900;
+//			background: $primary-color;
+//			color: #fff;
+//			@media screen and (max-width: 400px) {
+//				font-size: 16px;
+//			}
+//			&:hover {
+//				color: $secondary-color;
+//			}
+//		}
+//	}
+//}
+//
+//.crawl {
+//	white-space: pre-wrap;
+//}
+//
+//.grid-content {
+//	&.films,
+//	&.species,
+//	&.planets,
+//	&.people,
+//	&.starships,
+//	&.vehicles {
+//		margin: 0 -1rem;
+//		&> * {
+//			width: calc( 100% + 1rem );
+//		}
+//	}
+//}
